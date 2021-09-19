@@ -4,13 +4,25 @@ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
+
+
+    const ADMIN_USER = 'true';
+    const REGULAR_USER = 'false';
+
+
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER = '0';
+
+    protected $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +33,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contact',
+        'designation',
+        'image',
+        'admin',
+        'verified',
+        'verification_token'
+
     ];
 
     /**
@@ -39,6 +58,39 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime:Y-m-d H:00',
+        'created_at' => 'datetime:Y-m-d H:00',
+        'updated_at' => 'datetime:Y-m-d H:00',
+        'deleted_at' => 'datetime:Y-m-d H:00'
     ];
+
+
+
+
+    public function setNameAttribute($name)  //mutator fr name
+    {
+        $this->attributes['name'] = $name;
+    }
+
+    public function getNameAttribute($name)  //accessor fr name
+    {
+        return ucwords($name); //return in uppercase frst later
+    }
+
+    public function setEmailAttribute($email)  //mutator fr email
+    {
+        $this->attributes['email'] = strtolower($email); // save all in lower case
+    }
+
+    public function isAdmin(){
+        return $this->admin == User::ADMIN_USER;
+    }
+
+    public function isVerified(){
+        return $this->verified == User::ADMIN_USER;
+    }
+
+    public static function generateVerificationToken(){
+        return Str::random(40);
+    }
 }
