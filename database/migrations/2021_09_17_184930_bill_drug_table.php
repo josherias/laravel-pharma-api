@@ -15,7 +15,12 @@ class BillDrugTable extends Migration
     {
         Schema::create('bill_drug', function (Blueprint $table) {
             $table->id();
+            $table->integer('bill_id');
+            $table->integer('drug_id');
             $table->timestamps();
+
+            $table->foreign('bill_id')->references('id')->on('bills');
+            $table->foreign('drug_id')->references('id')->on('drugs');
         });
     }
 

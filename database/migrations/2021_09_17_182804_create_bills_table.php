@@ -15,7 +15,16 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
+            $table->integer('ammount');
+            $table->integer('patient_id');
+            $table->string('patient_name');
+            $table->integer('category_id');
+            $table->string('category_name');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

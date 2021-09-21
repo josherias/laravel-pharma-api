@@ -14,7 +14,24 @@ class Bill extends Model
 
     protected $fillable = [
         'ammount',
+        'patient_id',
         'patient_name',
+        'category_id',
         'category_name'
     ];
+
+
+    public function patient(){
+        return $this->belongsTo(Patient::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
+
+    public function drugs(){
+        return $this->belongsToMany(Drug::class);
+    }
+
+
 }

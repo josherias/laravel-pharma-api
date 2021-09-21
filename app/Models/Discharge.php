@@ -14,7 +14,9 @@ class Discharge extends Model
 
 
     protected $fillable = [
+        'patient_id',
         'patient_name',
+        'doctor_id',
         'doctor_name',
         'discharge_date',
         'initial_diagnosis',
@@ -26,4 +28,14 @@ class Discharge extends Model
         'clinical_summary',
         'next_appointment'
     ];
+
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function patient(){
+        return $this->belongsTo(Patient::class);
+    }
 }

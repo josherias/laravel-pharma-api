@@ -13,23 +13,33 @@ class Diagnosis extends Model
 
 
     protected $fillable = [
+        'patient_name',
+        'doctor_name',
         'blood_pressure',
         'pulse_rate',
         'respiratory_rate',
         'temperature',
-        'blood_sugar_levels',
-        'saturation',
-        'urine_output',
+        'random_blood_sugar',
+        'saturation_urine_output',
         'gcs',
         'investigation_plan',
         'final_diagnosis',
         'general_examination',
-        'cadiovascular_examination',
+        'cardiovascular_examination',
         'abdominal_examination',
         'respiratoty_examination',
-        'nervous_sys_examination',
-        'skeletal_examination',
+        'central_nervous_examination',
+        'musculo_skeletal_examination',
         'skin_examination',
         'treatment_plan',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+
+    public function patient(){
+        return $this->belongsTo(Patient::class);
+    }
 }

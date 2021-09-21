@@ -19,4 +19,15 @@ class Drug extends Model
         'expiry_date',
         'dosage'
     ];
+
+
+    public function bills(){
+        return $this->belongsToMany(Bill::class);
+    }
+
+    public function formulations(){
+        return $this->belongsToMany(Formulation::class);
+    }
+
 }
+

@@ -15,7 +15,10 @@ class CreateFormulationsTable extends Migration
     {
         Schema::create('formulations', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

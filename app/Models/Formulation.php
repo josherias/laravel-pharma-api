@@ -16,4 +16,9 @@ class Formulation extends Model
         'title',
         'description'
     ];
+
+
+    public function drugs(){
+        return $this->belongsToMany(Drug::class);
+    }
 }

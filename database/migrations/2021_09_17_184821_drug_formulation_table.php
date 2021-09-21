@@ -15,7 +15,12 @@ class DrugFormulationTable extends Migration
     {
         Schema::create('drug_formulation', function (Blueprint $table) {
             $table->id();
+            $table->integer('drug_id');
+            $table->integer('formulation_id');
             $table->timestamps();
+
+            $table->foreign('drug_id')->references('id')->on('drugs');
+            $table->foreign('formulation_id')->references('id')->on('formulations');
         });
     }
 

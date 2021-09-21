@@ -15,6 +15,22 @@ class UserFactory extends Factory
      */
     protected $model = User::class;
 
+    private $password;
+
+
+    private function generatePhoneNumber(){
+        $mobileNo = '+256753473842';
+        $result  = '';
+
+        for($i = 0; $i < 4; $i++){
+            $result .= random_int(0, 9);
+        }
+        $mobileNoUnique = substr($mobileNo, 0, -4) . $result;
+
+        return $mobileNoUnique;
+    }
+
+
     /**
      * Define the model's default state.
      *
@@ -25,9 +41,13 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-            'remember_token' => Str::random(10),
+            'password' => $this->password ?: $this->password = bcrypt('secret'),
+            'contact' => $this->generatePhoneNumber(),
+            'designation' => $this->faker->jobTitle(),
+            'image' => $this->faker->randomElement(['1.jpg', '2.jpg', '3.jpg']),
+            'admin' => $this->faker->randomElement([User::ADMIN_USER, User::REGULAR_USER]),
+            'verified' => $verified = $this->faker->randomElement([User::VERIFIED_USER, User::UNVERIFIED_USER]),
+            'verification_token' => $verified == User::VERIFIED_USER ? null : User::generateVerificationToken(),
         ];
     }
 

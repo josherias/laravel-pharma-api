@@ -93,4 +93,12 @@ class User extends Authenticatable
     public static function generateVerificationToken(){
         return Str::random(40);
     }
+
+    public function discharges(){
+        return $this->hasMany(Discharge::class);
+    }
+
+    public function diagnoses(){
+        return $this->hasMany(Diagnosis::class);
+    }
 }

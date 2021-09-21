@@ -33,4 +33,18 @@ class Patient extends Model
     }
 
 
+    public function discharges(){
+        return $this->hasMany(Discharge::class);
+
+    }
+
+
+    public function diagnoses(){
+        return $this->hasMany(Diagnosis::class);
+    }
+
+    public function bills(){
+        return $this->hasMany(Bill::class);
+    }
+
 }
