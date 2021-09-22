@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\DatesTrait;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Patient extends Model
 {
-    use HasFactory, SoftDeletes, DatesTrait;
+    use HasFactory, SoftDeletes;
 
 
     protected $fillable = [
@@ -20,6 +20,16 @@ class Patient extends Model
         'next_of_keen',
         'next_of_keen_contact'
     ];
+
+
+    protected $dates = ['deleted_at'];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:00',
+        'updated_at' => 'datetime:Y-m-d H:00',
+        'deleted_at' => 'datetime:Y-m-d H:00'
+    ];
+
 
 
     public function setNameAttribute($name)  //mutator fr name

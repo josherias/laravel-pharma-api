@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
-use App\Traits\DatesTrait;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Discharge extends Model
 {
-    use HasFactory, SoftDeletes, DatesTrait;
+    use HasFactory, SoftDeletes;
 
 
 
@@ -27,6 +27,15 @@ class Discharge extends Model
         'treatment_summary',
         'clinical_summary',
         'next_appointment'
+    ];
+
+
+    protected $dates = ['deleted_at'];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:00',
+        'updated_at' => 'datetime:Y-m-d H:00',
+        'deleted_at' => 'datetime:Y-m-d H:00'
     ];
 
 
