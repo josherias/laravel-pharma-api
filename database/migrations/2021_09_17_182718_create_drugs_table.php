@@ -14,13 +14,15 @@ class CreateDrugsTable extends Migration
     public function up()
     {
         Schema::create('drugs', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
             $table->integer('quantity');
             $table->string('dosage');
+            $table->double('price', 12, 0);
             $table->string('expiry_date');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

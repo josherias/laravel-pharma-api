@@ -18,7 +18,6 @@ class Discharge extends Model
         'patient_name',
         'doctor_id',
         'doctor_name',
-        'discharge_date',
         'initial_diagnosis',
         'investigation_plan',
         'discharge_plan',

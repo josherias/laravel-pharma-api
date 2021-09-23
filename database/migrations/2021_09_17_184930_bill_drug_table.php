@@ -14,9 +14,9 @@ class BillDrugTable extends Migration
     public function up()
     {
         Schema::create('bill_drug', function (Blueprint $table) {
-            $table->id();
-            $table->integer('bill_id');
-            $table->integer('drug_id');
+            $table->increments('id');
+            $table->integer('bill_id')->unsigned();
+            $table->integer('drug_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('bill_id')->references('id')->on('bills');

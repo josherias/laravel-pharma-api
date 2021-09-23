@@ -16,6 +16,7 @@ class Drug extends Model
         'name',
         'description',
         'quantity',
+        'price',
         'expiry_date',
         'dosage'
     ];

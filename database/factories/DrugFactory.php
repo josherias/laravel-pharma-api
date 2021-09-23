@@ -25,8 +25,9 @@ class DrugFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(1),
             'quantity' => $this->faker->randomDigit(),
+            'price' => $this->faker->randomNumber(5),
             'expiry_date' => $this->faker->date('Y-m-d', 'now'),
-            'dosage' => $this->random_int(100, 900)
+            'dosage' => $this->faker->randomDigit()
         ];
     }
 }

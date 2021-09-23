@@ -14,19 +14,19 @@ class CreateDischargesTable extends Migration
     public function up()
     {
         Schema::create('discharges', function (Blueprint $table) {
-            $table->id();
-            $table->integer('patient_id');
+            $table->increments('id');
+            $table->integer('patient_id')->unsigned();
             $table->string('patient_name');
-            $table->integer('doctor_id');
+            $table->integer('doctor_id')->unsigned();
             $table->string('doctor_name')->nullable();
-            $table->string('initial_diagnosis')->nullable();
-            $table->string('investigation_plan')->nullable();
-            $table->string('discharge_plan')->nullable();
-            $table->string('patient_condition')->nullable();
-            $table->string('final_diagnosis')->nullable();
-            $table->string('treatment_summary')->nullable();
-            $table->string('clinical_summary')->nullable();
-            $table->string('next_appointment')->nullable();
+            $table->longText('initial_diagnosis')->nullable();
+            $table->longText('investigation_plan')->nullable();
+            $table->longText('discharge_plan')->nullable();
+            $table->longText('patient_condition')->nullable();
+            $table->longText('final_diagnosis')->nullable();
+            $table->longText('treatment_summary')->nullable();
+            $table->longText('clinical_summary')->nullable();
+            $table->dateTime('next_appointment')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

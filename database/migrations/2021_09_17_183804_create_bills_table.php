@@ -13,12 +13,15 @@ class CreateBillsTable extends Migration
      */
     public function up()
     {
+
+
+
         Schema::create('bills', function (Blueprint $table) {
-            $table->id();
-            $table->float('ammount');
-            $table->integer('patient_id');
+            $table->increments('id');
+            $table->double('ammount', 12, 0);
+            $table->integer('patient_id')->unsigned();
             $table->string('patient_name');
-            $table->integer('category_id');
+            $table->integer('category_id')->unsigned();
             $table->string('category_name');
             $table->timestamps();
             $table->softDeletes();
@@ -26,6 +29,9 @@ class CreateBillsTable extends Migration
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->foreign('category_id')->references('id')->on('categories');
         });
+
+
+
     }
 
     /**

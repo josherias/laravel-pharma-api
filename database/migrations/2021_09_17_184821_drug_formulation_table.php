@@ -14,9 +14,9 @@ class DrugFormulationTable extends Migration
     public function up()
     {
         Schema::create('drug_formulation', function (Blueprint $table) {
-            $table->id();
-            $table->integer('drug_id');
-            $table->integer('formulation_id');
+            $table->increments('id');
+            $table->integer('drug_id')->unsigned();
+            $table->integer('formulation_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('drug_id')->references('id')->on('drugs');
