@@ -18,6 +18,7 @@ class CreateBillsTable extends Migration
 
         Schema::create('bills', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('quantity');
             $table->double('ammount', 12, 0);
             $table->integer('patient_id')->unsigned();
             $table->string('patient_name');

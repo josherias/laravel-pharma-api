@@ -15,7 +15,9 @@ class CreateDiagnosesTable extends Migration
     {
         Schema::create('diagnoses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('patient_id')->unsigned();
             $table->string('patient_name');
+            $table->integer('doctor_id')->unsigned();
             $table->string('doctor_name')->nullable();
             $table->string('blood_pressure')->nullable();
             $table->string('pulse_rate')->nullable();
@@ -36,6 +38,9 @@ class CreateDiagnosesTable extends Migration
             $table->longText('treatment_plan')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('patient_id')->references('id')->on('patients');
+            $table->foreign('doctor_id')->references('id')->on('users');
         });
     }
 

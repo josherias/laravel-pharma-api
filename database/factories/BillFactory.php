@@ -24,6 +24,7 @@ class BillFactory extends Factory
     public function definition()
     {
         return [
+        'quantity' => $this->faker->randomNumber($nbDigits = 3),
         'ammount' => $this->faker->randomNumber($nbDigits = 7),
         'patient_id' => Patient::all()->random()->id,
         'patient_name' => Patient::all()->random()->name,

@@ -7,6 +7,14 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 
+
+use App\Events\UserAccountCreated;
+use App\Listeners\SendVerificationTokenEmail;
+
+
+use App\Events\UserAccountEmailChanged;
+use App\Listeners\SendEmailResetVerifictraion;
+
 class EventServiceProvider extends ServiceProvider
 {
     /**
@@ -15,9 +23,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
-            SendEmailVerificationNotification::class,
+        // Registered::class => [
+        //     SendEmailVerificationNotification::class,
+        // ],
+
+        UserAccountCreated::class => [
+            SendVerificationTokenEmail::class
         ],
+
+        UserAccountEmailChanged::class => [
+            SendEmailResetVerifictraion::class
+        ]
     ];
 
     /**

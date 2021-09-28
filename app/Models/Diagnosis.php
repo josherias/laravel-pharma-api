@@ -12,7 +12,9 @@ class Diagnosis extends Model
 
 
     protected $fillable = [
+        'patient_id',
         'patient_name',
+        'doctor_id',
         'doctor_name',
         'blood_pressure',
         'pulse_rate',

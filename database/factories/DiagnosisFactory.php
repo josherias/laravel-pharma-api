@@ -24,7 +24,9 @@ class DiagnosisFactory extends Factory
     public function definition()
     {
         return [
-            'patient_name' => Patient::all()->random()->id,
+        'patient_id' => Patient::all()->random()->id,
+        'patient_name' => Patient::all()->random()->name,
+        'doctor_id' => User::all()->random()->id,
         'doctor_name' => User::all()->random()->name,
         'blood_pressure' => $this->faker->randomNumber(),
         'pulse_rate' => $this->faker->randomNumber(),
