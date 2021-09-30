@@ -14,7 +14,8 @@ use App\Http\Controllers\Patient\PatientController;
 use App\Http\Controllers\Patient\PatientDiagnosisController;
 use App\Http\Controllers\Patient\PatientDischargeController;
 use App\Http\Controllers\User\UserController;
-use App\Http\Controllers\User\UserPatientBillController;
+use App\Http\Controllers\User\UserPatientDiagnosisController;
+use App\Http\Controllers\User\UserPatientDischargeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('users/current-user', [UserController::class, 'currentUser'])->name('current-user');
 Route::resource('users', UserController::class, ['except' => ['create', 'edit']]);
 Route::get('users/verify/{token}', [UserController::class, 'verify'])->name('verify');
+
+Route::resource('users.patients.diagnoses', UserPatientDiagnosisController::class, ['only' => ['store', 'update']]);
+Route::resource('users.patients.discharges', UserPatientDischargeController::class, ['only' => ['store', 'update']]);
 
 
 
